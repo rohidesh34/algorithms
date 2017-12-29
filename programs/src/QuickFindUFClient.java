@@ -2,13 +2,13 @@ package unionFind;
 import java.util.*;
 import java.io.*;
 
-public class DynamicConnectivityClient {
+public class QuickFindUFClient {
     // client to test the algorithm implementations
 	public static void main(String[] args) {
 	    Scanner input = new Scanner(System.in);
 		System.out.println("Enter the number of nodes: ");
 	    int N = input.nextInt(); // input the number of elements
-		QuickFind qf = new QuickFind(N);
+		QuickFindUF qf = new QuickFindUF(N);
 		int count = 0;
 		while (input != null) {
 		    count++;
