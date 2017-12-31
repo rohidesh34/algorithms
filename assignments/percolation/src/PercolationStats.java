@@ -8,12 +8,10 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
-    private int trials;
+    private static final double CONFIDENCE_95 = 1.96;
+    private final int trials;
     // percolation thresholds
     private final double[] pt;
-    private double mean = 0.0;
-    private double stddev = 0.0;
-	private static final double CONFIDENCE_95 = 1.96;
     
     // constructor: perform trial experiments on an n-by-n grid
     public PercolationStats(int n, int trials) {

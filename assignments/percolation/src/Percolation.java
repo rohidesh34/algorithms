@@ -38,7 +38,7 @@ public class Percolation {
         for (int i = 0; i < n*n; i++) {
             siteStatus[i] = false;
         }
-
+/*
         // connect virtual top site to upper n sites
         for (int i = 1; i <= n; i++) {
             grid.union(0, i);
@@ -48,6 +48,7 @@ public class Percolation {
         for (int i = n*n; i > (n*n - n); i--) {
             grid.union((n*n + 1), i);
         }
+*/
     }
 
     // method open: open site (row, col) if it is not already open
@@ -57,6 +58,14 @@ public class Percolation {
         if (!siteStatus[siteMap[row - 1][col - 1]]) {
             siteStatus[siteMap[row - 1][col - 1]] = true;
             numberOfOpenSites++;
+        }
+        // connect to the virtual top site if the site being opened is in the uppermost row
+        if (row == 1) {
+            grid.union(0, siteMap[row - 1][col - 1] + 1);
+        }
+        // connect to the virtual bottom site if the site being opened is in the lowermost row
+        if (row == this.n) {
+            grid.union((this.n * this.n + 1), siteMap[row - 1][col - 1] + 1);
         }
         // check if there is a site on the left and connect to the it if that is open
         if ((col - 2) >= 0 && siteStatus[siteMap[row - 1][col - 2]]) {
@@ -88,7 +97,7 @@ public class Percolation {
         // check if row and col values are valid
         checkRowCol(row, col);
         // a site can be considered to be full if it is connected to the virtual top site
-        return grid.connected(0, siteMap[row - 1][col - 1] + 1) && siteStatus[siteMap[row - 1][col - 1]];
+        return grid.connected(0, siteMap[row - 1][col - 1] + 1);
     }
 
     // method numberOfOpenSites: returns number of open sites
@@ -107,7 +116,7 @@ public class Percolation {
         if (row < 1 || row > this.n || col < 1 || col > this.n) {
             throw new IllegalArgumentException("Value of (row, col): (" + row + ", " + col + ") not acceptable.");
         }
-	}
+    }
     // method main: optional to test the code
     public static void main(String[] args) {
         int n = 0;
