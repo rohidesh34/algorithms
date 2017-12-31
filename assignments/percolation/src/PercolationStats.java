@@ -17,6 +17,7 @@ public class PercolationStats {
 	private double stddev = 0.0;
 	private double confidenceLo = 0.0;
 	private double confidenceHi = 0.0;
+	
     // constructor: perform trial experiments on an n-by-n grid
 	public PercolationStats(int n, int trials) {
 	    // check if n and trials are valid
@@ -37,7 +38,6 @@ public class PercolationStats {
 		    }
 			numerator = (double) p.numberOfOpenSites();
 			pt[i] = numerator/denominator;
-			//System.out.println(pt[i] + "\t");
 		}
 	}
 	

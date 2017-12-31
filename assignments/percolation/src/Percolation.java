@@ -41,17 +41,17 @@ public class Percolation {
 		for (int i = 0; i < n*n; i++) {
 			siteStatus[i] = 0;
 		}
-		//printSites(n, "Grid and site status initialized:");
+
 		// connect virtual top site to upper n sites
 		for (int i = 1; i <= n; i++) {
 		    grid.union(0, i);
 		}
-		//printSites(n, "Top sites connected:");
+
 		// connect virtual bottom site to lower n sites
 		for (int i = n*n; i > (n*n - n); i--) {
 		    grid.union((n*n + 1), i);
 		}
-		//printSites(n, "Bottom sites connected:");
+
 	}
 
 	// method open: open site (row, col) if it is not already open
@@ -113,7 +113,7 @@ public class Percolation {
 	// method percolates: does the system percolate?
 	public boolean percolates() {
 	    // a system can be said to percolate if the virtual top site is connected to the virtual bottom site
-		return grid.connected(0, siteStatus.length + 1);
+		return grid.connected(0, (this.n * this.n) + 1);
 	}
 
 	// method main: optional to test the code
@@ -130,34 +130,5 @@ public class Percolation {
 		double percThres = numerator/denominator;
 		System.out.println("Percolation threshold i.e. numberOfOpenSites/totalNumberOfSites:\t" + percThres);
 	}
-	
-	// print sites
-	private void printSites(int n, String desc) {
-	    // print message
-		System.out.println(desc);
-		// print top site
-		System.out.print("Top site: " + grid.find(0) + "\t\t");
-		// print bottom site
-		System.out.println("Bottom site: " + grid.find(n*n + 1));
-		// print all sites
-		System.out.print("Sites:\t");
-		for (int i = 1; i < (n*n + 1); i++) {
-			System.out.print(grid.find(i) + "\t");
-		}
-		System.out.println();
-		// site map
-		System.out.print("Map:\t");
-		for (int i = 0; i < n; i++) {
-		    for (int j = 0; j < n; j++) {
-			    System.out.print(siteMap[i][j] + "\t");
-			}
-		}
-		System.out.println();
-		// site status
-		System.out.print("Status:\t");
-		for (int i = 0; i < n*n; i++) {
-		    System.out.print(siteStatus[i] + "\t");
-		}
-		System.out.println();
-	}
+
 }
